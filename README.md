@@ -117,7 +117,7 @@ Configured for **Next.js Static Export**, ensuring sub-100ms load times. Dynamic
 
 ## 🗺️ Roadmap: The Future of the Multiverse
 
-- [ ] **AI Universe**: A dynamic theme that generates UI layouts based on the current user's emotional state (via LLM sentiment analysis).
+- [ ] **Generative Universe**: A dynamic theme that adapts UI layouts based on user interaction patterns and contextual data.
 - [ ] **Collaborative Portal**: Real-time multi-user exploration of the Multiverse map.
 - [ ] **VR Overlay**: WebXR support for exploring the universes in a spatial computing environment.
 - [ ] **Mobile-First Dimensions**: Dedicated layouts for handheld multiversal interaction.

@@ -120,4 +120,3 @@ export function CursorProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-const isPaused = false; // Placeholder for future use
