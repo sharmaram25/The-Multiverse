@@ -156,7 +156,10 @@ export default function ThemeLabPage() {
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-medium">Email Address</label>
-                      <Input defaultValue="sharmaram2504@gmail.com" />
+                      <Input 
+                        defaultValue="sharmaram25@gmail.com" 
+                        className="bg-background"
+                      />
                     </div>
                   </CardContent>
                   <CardFooter>

@@ -2,8 +2,8 @@ import { Inter, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import { Providers } from '@/components/providers';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space' });
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap', preload: true });
+const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space', display: 'swap', preload: true });
 
 export const metadata = {
   title: 'The Multiverse | Advanced Design Systems',

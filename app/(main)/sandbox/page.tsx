@@ -7,25 +7,72 @@ import { cn } from '@/lib/utils';
 
 // --- Sandbox Components ---
 
+// Static color class mappings for Tailwind JIT compatibility
+const colorClasses = {
+  blue: {
+    primary: "bg-blue-600 text-white hover:bg-blue-700",
+    secondary: "bg-blue-100 text-blue-900 hover:bg-blue-200 dark:bg-blue-900/30 dark:text-blue-100 dark:hover:bg-blue-900/50",
+    outline: "border border-blue-200 hover:bg-blue-100 hover:text-blue-900 dark:border-blue-800 dark:hover:bg-blue-900/50 dark:hover:text-blue-100",
+    ghost: "hover:bg-blue-100 hover:text-blue-900 dark:hover:bg-blue-900/50 dark:hover:text-blue-100 text-blue-600 dark:text-blue-400",
+    link: "underline-offset-4 hover:underline text-blue-600 dark:text-blue-400",
+    glow: "shadow-[0_0_15px_rgba(59,130,246,0.5)]",
+  },
+  emerald: {
+    primary: "bg-emerald-600 text-white hover:bg-emerald-700",
+    secondary: "bg-emerald-100 text-emerald-900 hover:bg-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-100 dark:hover:bg-emerald-900/50",
+    outline: "border border-emerald-200 hover:bg-emerald-100 hover:text-emerald-900 dark:border-emerald-800 dark:hover:bg-emerald-900/50 dark:hover:text-emerald-100",
+    ghost: "hover:bg-emerald-100 hover:text-emerald-900 dark:hover:bg-emerald-900/50 dark:hover:text-emerald-100 text-emerald-600 dark:text-emerald-400",
+    link: "underline-offset-4 hover:underline text-emerald-600 dark:text-emerald-400",
+    glow: "shadow-[0_0_15px_rgba(16,185,129,0.5)]",
+  },
+  rose: {
+    primary: "bg-rose-600 text-white hover:bg-rose-700",
+    secondary: "bg-rose-100 text-rose-900 hover:bg-rose-200 dark:bg-rose-900/30 dark:text-rose-100 dark:hover:bg-rose-900/50",
+    outline: "border border-rose-200 hover:bg-rose-100 hover:text-rose-900 dark:border-rose-800 dark:hover:bg-rose-900/50 dark:hover:text-rose-100",
+    ghost: "hover:bg-rose-100 hover:text-rose-900 dark:hover:bg-rose-900/50 dark:hover:text-rose-100 text-rose-600 dark:text-rose-400",
+    link: "underline-offset-4 hover:underline text-rose-600 dark:text-rose-400",
+    glow: "shadow-[0_0_15px_rgba(244,63,94,0.5)]",
+  },
+  amber: {
+    primary: "bg-amber-600 text-white hover:bg-amber-700",
+    secondary: "bg-amber-100 text-amber-900 hover:bg-amber-200 dark:bg-amber-900/30 dark:text-amber-100 dark:hover:bg-amber-900/50",
+    outline: "border border-amber-200 hover:bg-amber-100 hover:text-amber-900 dark:border-amber-800 dark:hover:bg-amber-900/50 dark:hover:text-amber-100",
+    ghost: "hover:bg-amber-100 hover:text-amber-900 dark:hover:bg-amber-900/50 dark:hover:text-amber-100 text-amber-600 dark:text-amber-400",
+    link: "underline-offset-4 hover:underline text-amber-600 dark:text-amber-400",
+    glow: "shadow-[0_0_15px_rgba(245,158,11,0.5)]",
+  },
+  purple: {
+    primary: "bg-purple-600 text-white hover:bg-purple-700",
+    secondary: "bg-purple-100 text-purple-900 hover:bg-purple-200 dark:bg-purple-900/30 dark:text-purple-100 dark:hover:bg-purple-900/50",
+    outline: "border border-purple-200 hover:bg-purple-100 hover:text-purple-900 dark:border-purple-800 dark:hover:bg-purple-900/50 dark:hover:text-purple-100",
+    ghost: "hover:bg-purple-100 hover:text-purple-900 dark:hover:bg-purple-900/50 dark:hover:text-purple-100 text-purple-600 dark:text-purple-400",
+    link: "underline-offset-4 hover:underline text-purple-600 dark:text-purple-400",
+    glow: "shadow-[0_0_15px_rgba(139,92,246,0.5)]",
+  },
+  zinc: {
+    primary: "bg-zinc-600 text-white hover:bg-zinc-700",
+    secondary: "bg-zinc-100 text-zinc-900 hover:bg-zinc-200 dark:bg-zinc-900/30 dark:text-zinc-100 dark:hover:bg-zinc-900/50",
+    outline: "border border-zinc-200 hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-800 dark:hover:bg-zinc-900/50 dark:hover:text-zinc-100",
+    ghost: "hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-zinc-900/50 dark:hover:text-zinc-100 text-zinc-600 dark:text-zinc-400",
+    link: "underline-offset-4 hover:underline text-zinc-600 dark:text-zinc-400",
+    glow: "shadow-[0_0_15px_rgba(113,113,122,0.5)]",
+  },
+} as const;
+
+type ColorKey = keyof typeof colorClasses;
+type VariantKey = 'primary' | 'secondary' | 'outline' | 'ghost' | 'link';
+
 function ButtonSandbox() {
-  const [variant, setVariant] = useState('primary');
+  const [variant, setVariant] = useState<VariantKey>('primary');
   const [size, setSize] = useState('default');
   const [radius, setRadius] = useState('md');
   const [shadow, setShadow] = useState('none');
-  const [color, setColor] = useState('blue');
+  const [color, setColor] = useState<ColorKey>('blue');
   const [isHovered, setIsHovered] = useState(false);
 
   const getButtonClasses = () => {
     const base = "inline-flex items-center justify-center font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background";
     
-    const variants: Record<string, string> = {
-      primary: `bg-${color}-600 text-white hover:bg-${color}-700`,
-      secondary: `bg-${color}-100 text-${color}-900 hover:bg-${color}-200 dark:bg-${color}-900/30 dark:text-${color}-100 dark:hover:bg-${color}-900/50`,
-      outline: `border border-${color}-200 hover:bg-${color}-100 hover:text-${color}-900 dark:border-${color}-800 dark:hover:bg-${color}-900/50 dark:hover:text-${color}-100`,
-      ghost: `hover:bg-${color}-100 hover:text-${color}-900 dark:hover:bg-${color}-900/50 dark:hover:text-${color}-100 text-${color}-600 dark:text-${color}-400`,
-      link: `underline-offset-4 hover:underline text-${color}-600 dark:text-${color}-400`,
-    };
-
     const sizes: Record<string, string> = {
       sm: "h-9 px-3 text-xs",
       default: "h-10 py-2 px-4 text-sm",
@@ -46,10 +93,10 @@ function ButtonSandbox() {
       sm: "shadow-sm",
       md: "shadow-md",
       lg: "shadow-lg",
-      glow: `shadow-[0_0_15px_rgba(var(--${color}-500),0.5)]`,
+      glow: colorClasses[color].glow,
     };
 
-    return cn(base, variants[variant], sizes[size], radii[radius], shadows[shadow]);
+    return cn(base, colorClasses[color][variant], sizes[size], radii[radius], shadows[shadow]);
   };
 
   return (
@@ -118,14 +165,13 @@ function ButtonSandbox() {
           <div>
             <label className="text-sm font-medium text-muted-foreground mb-2 block">Color Theme</label>
             <div className="flex flex-wrap gap-2">
-              {['blue', 'emerald', 'rose', 'amber', 'purple', 'zinc'].map(c => (
+              {(['blue', 'emerald', 'rose', 'amber', 'purple', 'zinc'] as const).map(c => (
                 <button 
                   key={c} 
                   onClick={() => setColor(c)} 
                   className={cn(
                     "w-8 h-8 rounded-full border-2 transition-transform", 
-                    color === c ? "scale-110 border-white shadow-md" : "border-transparent hover:scale-105",
-                    `bg-${c}-500`
+                    color === c ? "scale-110 border-white shadow-md" : "border-transparent hover:scale-105"
                   )}
                   style={{ backgroundColor: c === 'zinc' ? '#71717a' : c === 'blue' ? '#3b82f6' : c === 'emerald' ? '#10b981' : c === 'rose' ? '#f43f5e' : c === 'amber' ? '#f59e0b' : '#8b5cf6' }}
                 />
@@ -145,7 +191,10 @@ function CardSandbox() {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-      <div className="lg:col-span-2 border border-border rounded-2xl bg-card/50 flex items-center justify-center p-12 min-h-[400px] relative overflow-hidden bg-[url('https://picsum.photos/seed/sandbox/800/600')] bg-cover bg-center">
+      <div 
+        className="lg:col-span-2 border border-border rounded-2xl bg-card/50 flex items-center justify-center p-12 min-h-[400px] relative overflow-hidden bg-cover bg-center"
+        style={{ backgroundImage: "url('https://picsum.photos/seed/sandbox/800/600')" }}
+      >
         <div className="absolute inset-0 bg-black/20" />
         
         <motion.div

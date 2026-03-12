@@ -284,7 +284,12 @@ function EraSection({ era, index }: { era: EraData; index: number }) {
 
               {/* Background Decorators */}
               {era.id === 'future' && <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,243,255,0.1),transparent)] pointer-events-none" />}
-              {era.id === '90s' && <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/brushed-alum.png')] opacity-10 pointer-events-none" />}
+              {era.id === '90s' && (
+                <div 
+                  className="absolute inset-0 opacity-10 pointer-events-none" 
+                  style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/brushed-alum.png')" }}
+                />
+              )}
            </motion.div>
 
            {/* Floating Info Marker */}
@@ -323,7 +328,7 @@ function Era90s() {
       </div>
       <div className="bg-white flex-1 p-8 overflow-auto border-t-4 border-l-4 border-zinc-800 border-b-white border-r-white">
         <center>
-          <img src="https://web.archive.org/web/20090831135249/http://geocities.com/Heartland/Acres/5115/const1.gif" alt="Construction" className="mb-4 h-12" />
+          <img src="https://web.archive.org/web/20090831135249/http://geocities.com/Heartland/Acres/5115/const1.gif" alt="Construction" className="mb-4 h-12" loading="lazy" />
           <h1 className="text-3xl text-blue-800 underline font-black mb-4">WELCOME TO MY COOL HOMEPAGE</h1>
           <p className="text-red-600 font-bold mb-6">*** BEST VIEWED IN NETSCAPE NAVIGATOR (800x600) ***</p>
         </center>
@@ -342,7 +347,7 @@ function Era90s() {
               <td className="p-6 align-top">
                  <p className="mb-4">Hello visitor! You are person number #000429 to visit this page today! Please dont forget to sign my guestbook before you leave!</p>
                  <div className="h-[2px] w-full bg-gradient-to-r from-red-500 via-green-500 to-blue-500 my-8" />
-                 <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3N2dDdxM3J6ZzRyZzRyZzRyZzRyZzRyZzRyZzRyZzRyZzRyZzRyJmcmVzaD0x/tT7RsqhHLTrmo/giphy.gif" className="mx-auto h-16" />
+                 <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3N2dDdxM3J6ZzRyZzRyZzRyZzRyZzRyZzRyZzRyZzRyZzRyZzRyJmcmVzaD0x/tT7RsqhHLTrmo/giphy.gif" alt="Animated decorative GIF" className="mx-auto h-16" loading="lazy" />
               </td>
             </tr>
           </tbody>

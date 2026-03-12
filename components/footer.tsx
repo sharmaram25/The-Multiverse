@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'motion/react';
-import { Github, Twitter, Linkedin } from 'lucide-react';
+import { Github, Instagram, Linkedin, Globe } from 'lucide-react';
 import { useTheme } from '@/components/theme-provider';
 import { cn } from '@/lib/utils';
 import { Logo } from '@/components/logo';
@@ -42,7 +42,7 @@ export function Footer() {
         <div className="flex items-center space-x-6">
           <motion.a 
             whileHover={{ y: -3, color: theme === 'neon' ? '#00f3ff' : 'var(--primary)' }}
-            href="https://github.com/sharmaram2504" 
+            href="https://github.com/sharmaram25" 
             target="_blank" 
             rel="noopener noreferrer"
             className={cn(
@@ -54,23 +54,39 @@ export function Footer() {
           </motion.a>
           <motion.a 
             whileHover={{ y: -3, color: theme === 'neon' ? '#00f3ff' : 'var(--primary)' }}
-            href="#" 
-            className={cn(
-              "transition-colors",
-              theme === 'neon' ? "text-gray-500 hover:text-[#00f3ff]" : "text-muted-foreground"
-            )}
-          >
-            <Twitter size={20} />
-          </motion.a>
-          <motion.a 
-            whileHover={{ y: -3, color: theme === 'neon' ? '#00f3ff' : 'var(--primary)' }}
-            href="#" 
+            href="https://www.linkedin.com/in/ram-sharma-20rs02/" 
+            target="_blank" 
+            rel="noopener noreferrer"
             className={cn(
               "transition-colors",
               theme === 'neon' ? "text-gray-500 hover:text-[#00f3ff]" : "text-muted-foreground"
             )}
           >
             <Linkedin size={20} />
+          </motion.a>
+          <motion.a 
+            whileHover={{ y: -3, color: theme === 'neon' ? '#00f3ff' : 'var(--primary)' }}
+            href="https://www.instagram.com/ramsharma.25/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className={cn(
+              "transition-colors",
+              theme === 'neon' ? "text-gray-500 hover:text-[#00f3ff]" : "text-muted-foreground"
+            )}
+          >
+            <Instagram size={20} />
+          </motion.a>
+          <motion.a 
+            whileHover={{ y: -3, color: theme === 'neon' ? '#00f3ff' : 'var(--primary)' }}
+            href="https://portfolio-ram-sharma.netlify.app/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className={cn(
+              "transition-colors",
+              theme === 'neon' ? "text-gray-500 hover:text-[#00f3ff]" : "text-muted-foreground"
+            )}
+          >
+            <Globe size={20} />
           </motion.a>
         </div>
       </div>

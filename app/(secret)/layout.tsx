@@ -21,7 +21,10 @@ export default function SecretLayout({
       </main>
       
       {/* Visual noise/grain overlay specific to secret world */}
-      <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-[999] bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+      <div 
+        className="fixed inset-0 pointer-events-none opacity-[0.03] z-[999]" 
+        style={{ backgroundImage: "url('/textures/carbon-fibre.png')" }}
+      />
     </div>
   );
 }

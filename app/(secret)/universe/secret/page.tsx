@@ -191,7 +191,7 @@ export default function SecretUniverse() {
                          onClick={() => router.push('/universes')}
                          className="flex items-center gap-2 px-4 py-1.5 bg-red-600/20 text-red-500 border border-red-500/50 hover:bg-red-600 hover:text-white transition-all text-[10px] font-black uppercase group"
                        >
-                          <Power size={14} className="group-hover:rotate-90 transition-transform" />
+                          <Power size={14} className="group-hover:[transform:rotate(90deg)] transition-transform" />
                           Escape_Nexus
                        </button>
                    </div>

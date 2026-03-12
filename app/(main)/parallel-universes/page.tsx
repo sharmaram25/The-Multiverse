@@ -193,7 +193,10 @@ function UniversePanel({ theme, onThemeChange, component, label, isHovered, onHo
            )}
            {theme === 'brutalist' && (
              <div className="absolute inset-0 bg-[#f0f0f0] opacity-100">
-                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-multiply" />
+                <div 
+                  className="absolute inset-0 opacity-20 mix-blend-multiply" 
+                  style={{ backgroundImage: "url('https://grainy-gradients.vercel.app/noise.svg')" }}
+                />
                 <div className="absolute inset-x-0 top-0 h-2 bg-black" />
                 <div className="absolute inset-x-0 bottom-0 h-2 bg-black" />
              </div>

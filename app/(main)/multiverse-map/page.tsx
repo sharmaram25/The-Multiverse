@@ -83,7 +83,10 @@ export default function MultiverseMap() {
       {/* Cosmic Background */}
       <div className="absolute inset-0 bg-[#020617]">
          <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_50%_50%,#4f46e5,transparent)]" />
-         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10" />
+         <div 
+           className="absolute inset-0 opacity-10" 
+           style={{ backgroundImage: "url('https://grainy-gradients.vercel.app/noise.svg')" }}
+         />
       </div>
 
       {/* Floating Particles */}
