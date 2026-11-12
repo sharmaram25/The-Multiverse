@@ -1,0 +1,611 @@
+@import "tailwindcss";
+
+/* Tailwind v4 Configuration */
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--fg);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-fg);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-fg);
+  --color-border: var(--border);
+  --color-input: var(--border);
+  --color-ring: var(--primary);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-fg);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-fg);
+  --color-destructive: #c81e1e;
+  --color-destructive-foreground: #ffffff;
+  --color-success: #15803d;
+  --color-warning: #a16207;
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+  --radius-full: var(--radius-full);
+
+  --font-sans: var(--u-font-body);
+  --font-display: var(--u-font-display);
+  --font-mono: var(--u-font-mono);
+
+  --animate-bounce: none;
+  --animate-ping: none;
+  --animate-pulse: none;
+}
+
+@layer base {
+  /*
+   * Universe palettes.
+   * Every text/surface pair is verified against WCAG 2.2:
+   *   fg/bg ≥ 17:1, muted-fg on bg & muted ≥ 7:1 (AAA), primary-fg on primary ≥ 5.6:1,
+   *   primary as text on bg ≥ 4.6:1 (and on muted). Never set --primary to a translucent value —
+   *   it is used for text, icons and solid buttons.
+   */
+  :root, .minimal {
+    --bg: #ffffff;
+    --fg: #0a0a0a;
+    --primary: #111111;
+    --primary-fg: #ffffff;
+    --muted: #f4f4f5;
+    --muted-fg: #52525b;
+    --border: #e4e4e7;
+    --card: #ffffff;
+    --card-fg: #0a0a0a;
+    --accent: #f4f4f5;
+    --accent-fg: #18181b;
+
+    --radius-sm: 0.25rem;
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+    --radius-2xl: 1rem;
+    --radius-full: 9999px;
+
+    --btn-border: 1px solid #111;
+    --btn-shadow: 0 1px 2px rgba(0,0,0,0.06);
+    --btn-hover-shadow: 0 6px 16px -6px rgba(0,0,0,0.25);
+    --btn-transform: translateY(-1px);
+  }
+
+  /* Subtle grain for Minimal */
+  .minimal::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url('/textures/dark-matter.png');
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 50;
+  }
+
+  .glass {
+    --bg: #070b17;
+    --fg: #f1f5f9;
+    --primary: #c7d2fe;
+    --primary-fg: #0b1022;
+    --muted: rgba(255, 255, 255, 0.05);
+    --muted-fg: #a8b3c7;
+    --border: rgba(255, 255, 255, 0.12);
+    --card: rgba(255, 255, 255, 0.04);
+    --card-fg: #f1f5f9;
+    --accent: rgba(255, 255, 255, 0.08);
+    --accent-fg: #f8fafc;
+
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --radius-2xl: 2rem;
+    --radius-full: 9999px;
+
+    --btn-border: 1px solid rgba(255, 255, 255, 0.14);
+    --btn-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+    --btn-hover-shadow: 0 8px 32px rgba(199, 210, 254, 0.18);
+    --btn-transform: translateY(-1px);
+  }
+
+  /* Mesh gradient for Glass */
+  .glass::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.14) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.14) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.08) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(20, 184, 166, 0.08) 0px, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .neon {
+    --bg: #05070b;
+    --fg: #e8fbff;
+    --primary: #00e5ff;
+    --primary-fg: #00151a;
+    --muted: #0b1118;
+    --muted-fg: #8fc9d4;
+    --border: #164a56;
+    --card: #091016;
+    --card-fg: #e8fbff;
+    --accent: #ff3dd8;
+    --accent-fg: #14000f;
+
+    --radius-sm: 0.125rem;
+    --radius-md: 0.125rem;
+    --radius-lg: 0.25rem;
+    --radius-xl: 0.25rem;
+    --radius-2xl: 0.375rem;
+    --radius-full: 9999px;
+
+    --btn-border: 1px solid #00e5ff;
+    --btn-shadow: 0 0 14px rgba(0, 229, 255, 0.28);
+    --btn-hover-shadow: 0 0 26px rgba(0, 229, 255, 0.5);
+    --btn-transform: translateY(-1px);
+  }
+
+  /* Faint scanlines for Neon — kept low so text stays crisp */
+  .neon::before {
+    content: " ";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.18) 50%);
+    background-size: 100% 3px;
+    pointer-events: none;
+    opacity: 0.18;
+    z-index: 40;
+  }
+
+  .brutalist {
+    --bg: #f1efe8;
+    --fg: #0a0a0a;
+    --primary: #b02200;
+    --primary-fg: #ffffff;
+    --muted: #e2dfd4;
+    --muted-fg: #383838;
+    --border: #0a0a0a;
+    --card: #ffffff;
+    --card-fg: #0a0a0a;
+    --accent: #1a2fff;
+    --accent-fg: #ffffff;
+
+    --radius-sm: 0;
+    --radius-md: 0;
+    --radius-lg: 0;
+    --radius-xl: 0;
+    --radius-2xl: 0;
+    --radius-full: 0;
+
+    --btn-border: 3px solid #0a0a0a;
+    --btn-shadow: 6px 6px 0px 0px #0a0a0a;
+    --btn-hover-shadow: 8px 8px 0px 0px #0a0a0a;
+    --btn-transform: translate(-2px, -2px);
+  }
+
+  /* Paper texture for Brutalist */
+  .brutalist::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url('/textures/handmade-paper.png');
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* Secret Universe Standalone Styles */
+  .secret-universe {
+    --bg: #000;
+    --fg: #0f0;
+    --primary: #0f0;
+    --border: #0f0;
+    cursor: crosshair !important;
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+    /* Only the page background fades between universes; text color switches instantly
+       so inherited text can never be caught mid-transition (invisible on dark surfaces). */
+    transition: background-color 400ms ease-in-out;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (pointer: fine) {
+  .custom-cursor-active,
+  .custom-cursor-active body,
+  .custom-cursor-active a,
+  .custom-cursor-active button,
+  .custom-cursor-active [role="button"],
+  .custom-cursor-active input,
+  .custom-cursor-active select,
+  .custom-cursor-active textarea,
+  .custom-cursor-active * {
+    cursor: none !important;
+  }
+}
+
+/* Performance: GPU-accelerate animated elements */
+[data-motion], .motion-reveal-check {
+  will-change: transform, opacity;
+}
+
+.fixed[class*="z-[9999]"] {
+  will-change: transform;
+}
+
+/* Universe specific component overrides */
+.glass .btn-primary {
+  backdrop-filter: blur(10px);
+}
+
+.neon .btn-primary {
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.35);
+}
+
+.brutalist .btn-primary {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+}
+
+.glass-panel {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+.minimal .glass-panel {
+  background-color: #ffffff;
+  border: 1px solid #111111;
+  box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.1);
+  backdrop-filter: none;
+}
+
+.glass .glass-panel {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+}
+.glass .glass-panel:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.neon .glass-panel {
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(0, 243, 255, 0.5);
+  box-shadow: 0 0 50px rgba(0, 243, 255, 0.1);
+  transition: all 300ms ease-in-out;
+}
+.neon .glass-panel:hover {
+  border-color: #00f3ff;
+}
+
+.brutalist .glass-panel {
+  background-color: #ffffff;
+  border: 4px solid #000000;
+  box-shadow: 12px 12px 0px 0px rgba(0,0,0,1);
+  backdrop-filter: none;
+  transition: all 300ms ease-in-out;
+}
+.brutalist .glass-panel:hover {
+  transform: translate(-2px, -2px);
+}
+
+/* Motion Inspector Boundaries */
+.show-boundaries * {
+  outline: 1px solid rgba(79, 70, 229, 0.2) !important;
+}
+
+.show-boundaries [data-framer-component-type],
+.show-boundaries .motion-reveal-check {
+  outline: 2px solid #22c55e !important; /* Green for markers */
+  outline-offset: -2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* -------------------------------------------------------------------------
+ * Primary navigation — one structure, universe-specific materials.
+ * All colors come from universe tokens, so text is always legible.
+ * ---------------------------------------------------------------------- */
+.nav-shell {
+  background-color: color-mix(in srgb, var(--bg) 78%, transparent);
+  border-color: var(--border);
+  backdrop-filter: saturate(1.6) blur(16px);
+  -webkit-backdrop-filter: saturate(1.6) blur(16px);
+  box-shadow: 0 1px 0 0 color-mix(in srgb, var(--fg) 4%, transparent), 0 8px 30px -12px rgba(0, 0, 0, 0.18);
+}
+.nav-shell[data-compact] { box-shadow: 0 1px 0 0 color-mix(in srgb, var(--fg) 4%, transparent), 0 12px 40px -14px rgba(0, 0, 0, 0.28); }
+.nav-link { color: var(--muted-fg); transition: color 150ms ease; }
+.nav-link:hover, .nav-link[aria-expanded="true"], .nav-link[aria-current="page"] { color: var(--fg); }
+.nav-link:focus-visible, .nav-brand:focus-visible, .nav-cta:focus-visible, .nav-search:focus-visible, .nav-mega-link:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+.nav-hover { background-color: var(--muted); }
+.nav-active-dot { background-color: var(--primary); }
+.nav-search, .nav-universes { border-color: var(--border); background-color: color-mix(in srgb, var(--muted) 70%, transparent); }
+.nav-search:hover { color: var(--fg); background-color: var(--muted); }
+.nav-cta { background-color: var(--primary); color: var(--primary-fg); box-shadow: var(--btn-shadow); transition: transform 150ms ease, box-shadow 150ms ease; }
+.nav-cta:hover { box-shadow: var(--btn-hover-shadow); transform: translateY(-1px); }
+.nav-progress { background: linear-gradient(90deg, transparent, var(--primary)); }
+.nav-mega {
+  background-color: color-mix(in srgb, var(--bg) 94%, transparent);
+  border-color: var(--border);
+  backdrop-filter: saturate(1.6) blur(20px);
+  -webkit-backdrop-filter: saturate(1.6) blur(20px);
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.35);
+}
+.nav-mega-link:hover, .nav-mega-link:focus-visible, .nav-mega-link.is-current { background-color: var(--muted); }
+.nav-mega-icon { border-color: var(--border); background-color: var(--card); color: var(--fg); }
+.nav-mega-link:hover .nav-mega-icon, .nav-mega-link:focus-visible .nav-mega-icon { background-color: var(--primary); color: var(--primary-fg); border-color: transparent; }
+
+/* Glass: frosted material with a light inner edge */
+.glass .nav-shell, .glass .nav-mega {
+  background-color: rgba(13, 18, 34, 0.62);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08), 0 20px 50px -20px rgba(0, 0, 0, 0.6);
+}
+/* Neon: luminous edge */
+.neon .nav-shell, .neon .nav-mega {
+  background-color: rgba(5, 7, 11, 0.86);
+  border-color: rgba(0, 229, 255, 0.45);
+  box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.08), 0 0 28px -6px rgba(0, 229, 255, 0.35);
+}
+.neon .nav-active-dot { box-shadow: 0 0 8px var(--primary); }
+.neon .nav-progress { background: linear-gradient(90deg, transparent, var(--primary), var(--accent)); }
+/* Brutalist: hard edges, offset shadow, no blur */
+.brutalist .nav-shell, .brutalist .nav-mega {
+  background-color: var(--card);
+  border-width: 3px;
+  border-color: var(--border);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: 6px 6px 0 0 var(--border);
+}
+.brutalist .nav-link { color: var(--fg); font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; }
+.brutalist .nav-hover { background-color: var(--fg); }
+.brutalist .nav-link:hover, .brutalist .nav-link[aria-expanded="true"] { color: var(--bg); }
+.brutalist .nav-search, .brutalist .nav-universes { border-width: 2px; background-color: var(--bg); }
+.brutalist .nav-progress { background: var(--primary); height: 3px; }
+
+/* Floating universe switcher */
+.switcher-trigger, .switcher-panel {
+  background-color: color-mix(in srgb, var(--bg) 88%, transparent);
+  border-color: var(--border);
+  backdrop-filter: saturate(1.6) blur(16px);
+  -webkit-backdrop-filter: saturate(1.6) blur(16px);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+}
+.switcher-trigger { transition: transform 150ms ease, box-shadow 150ms ease; }
+.switcher-trigger:hover { transform: translateY(-1px); box-shadow: 0 14px 36px -12px rgba(0, 0, 0, 0.4); }
+.switcher-trigger:focus-visible, .switcher-option:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.switcher-option:hover, .switcher-option.is-active { background-color: var(--muted); }
+.glass .switcher-trigger, .glass .switcher-panel { background-color: rgba(13, 18, 34, 0.7); }
+.neon .switcher-trigger, .neon .switcher-panel { border-color: rgba(0, 229, 255, 0.45); box-shadow: 0 0 24px -8px rgba(0, 229, 255, 0.4); background-color: rgba(5, 7, 11, 0.9); }
+.brutalist .switcher-trigger, .brutalist .switcher-panel { background-color: var(--card); border-width: 3px; backdrop-filter: none; box-shadow: 5px 5px 0 0 var(--border); }
+
+/* =========================================================================
+ * UNIVERSE IDENTITIES
+ * Each universe is a complete material system — typography, surfaces, depth,
+ * background and interaction — applied through the shared primitives used on
+ * every page (bg-card surfaces, font-display headings, uppercase labels).
+ * Unlayered rules intentionally take precedence over Tailwind utilities.
+ * All motion is transform/opacity only and disabled for reduced motion.
+ * ====================================================================== */
+:root {
+  --u-font-body: var(--font-inter), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --u-font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --u-font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+::selection { background: var(--primary); color: var(--primary-fg); }
+
+:where(a, button, [role="button"], input, select, textarea, summary):focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Shared surface behaviour */
+:is([class*="rounded-xl"], [class*="rounded-2xl"], [class*="rounded-3xl"])[class*="bg-card"] {
+  transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease, background-color 200ms ease;
+}
+
+/* ---- MINIMAL · Editorial --------------------------------------------- */
+/* Precise contemporary grotesk, set tight — the default universe. */
+:root, .minimal {
+  --u-font-body: var(--font-geist), var(--font-inter), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --u-font-display: var(--font-geist), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+.minimal .font-display {
+  font-weight: 600;
+  letter-spacing: -0.045em;
+}
+.minimal h1.font-display { line-height: 0.98; }
+.minimal body { letter-spacing: -0.006em; }
+.minimal [class*="bg-card"] { box-shadow: none; }
+.minimal :is([class*="rounded-xl"], [class*="rounded-2xl"], [class*="rounded-3xl"])[class*="bg-card"]:hover {
+  border-color: color-mix(in srgb, var(--fg) 35%, transparent);
+}
+.minimal hr, .minimal .border-t, .minimal .border-b { border-color: var(--border); }
+
+/* ---- GLASS · Depth ---------------------------------------------------- */
+.glass {
+  --u-font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+.glass .font-display {
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  background-image: linear-gradient(180deg, #ffffff 20%, #c7d2fe 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.glass [class*="bg-card"] {
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.02));
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.09), 0 12px 32px -16px rgba(0, 0, 0, 0.6);
+}
+.glass :is([class*="rounded-xl"], [class*="rounded-2xl"], [class*="rounded-3xl"])[class*="bg-card"]:hover {
+  border-color: rgba(199, 210, 254, 0.3);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12), 0 18px 44px -18px rgba(99, 102, 241, 0.45);
+}
+/* Slow aurora drift behind everything (composited transform only) */
+.glass::after {
+  inset: -20%;
+  animation: glass-aurora 38s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes glass-aurora {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  50% { transform: translate3d(4%, -3%, 0) rotate(6deg) scale(1.05); }
+  100% { transform: translate3d(-3%, 4%, 0) rotate(-4deg) scale(1.02); }
+}
+
+/* ---- NEON · Signal ---------------------------------------------------- */
+.neon {
+  --u-font-display: var(--font-space), ui-sans-serif, system-ui, sans-serif;
+}
+.neon body {
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0, 229, 255, 0.10), transparent 60%),
+    linear-gradient(rgba(0, 229, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.045) 1px, transparent 1px);
+  background-size: 100% 100%, 56px 56px, 56px 56px;
+  background-attachment: fixed;
+}
+.neon .font-display {
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  text-shadow: 0 0 28px rgba(0, 229, 255, 0.28);
+}
+/* Technical labels: small uppercase text renders in mono */
+.neon :is(p, span, div, label, h3, h4).uppercase { font-family: var(--u-font-mono); letter-spacing: 0.08em; }
+.neon [class*="bg-card"] {
+  border-color: rgba(0, 229, 255, 0.2);
+  box-shadow: inset 0 0 0 1px rgba(0, 229, 255, 0.03);
+}
+.neon :is([class*="rounded-xl"], [class*="rounded-2xl"], [class*="rounded-3xl"])[class*="bg-card"]:hover {
+  border-color: rgba(0, 229, 255, 0.6);
+  box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.15), 0 0 28px -8px rgba(0, 229, 255, 0.5);
+}
+.neon .bg-primary { box-shadow: 0 0 18px -4px rgba(0, 229, 255, 0.6); }
+
+/* ---- BRUTALIST · Raw -------------------------------------------------- */
+.brutalist {
+  --u-font-body: var(--font-space), ui-sans-serif, system-ui, sans-serif;
+  --u-font-display: var(--font-space), ui-sans-serif, system-ui, sans-serif;
+}
+.brutalist .font-display {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+}
+.brutalist :is([class*="rounded-xl"], [class*="rounded-2xl"], [class*="rounded-3xl"])[class*="bg-card"] {
+  border-width: 2px;
+  border-color: var(--border);
+  box-shadow: 5px 5px 0 0 var(--border);
+}
+.brutalist :is([class*="rounded-xl"], [class*="rounded-2xl"], [class*="rounded-3xl"])[class*="bg-card"]:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 0 var(--border);
+}
+.brutalist .bg-primary { border: 2px solid var(--border); }
+
+@media (prefers-reduced-motion: reduce) {
+  .glass::after { animation: none; }
+  .brutalist :is([class*="rounded-xl"], [class*="rounded-2xl"], [class*="rounded-3xl"])[class*="bg-card"]:hover { transform: none; }
+}
+
+/* Home */
+.home-cta-primary { box-shadow: var(--btn-shadow); transition: transform 150ms ease, box-shadow 150ms ease; }
+.home-cta-primary:hover { transform: translateY(-1px); box-shadow: var(--btn-hover-shadow); }
+.spec-panel { box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 24px 60px -32px rgba(0,0,0,0.22); }
+.glass .spec-panel { box-shadow: 0 30px 80px -30px rgba(99, 102, 241, 0.45); }
+.neon .spec-panel { box-shadow: 0 0 60px -20px rgba(0, 229, 255, 0.45); }
+.brutalist .spec-panel { box-shadow: 8px 8px 0 0 var(--border); }
+
+/* Token scopes (Playground preview, Builder canvas) render only the user's tokens —
+   universe materials must not leak in. Higher specificity than the universe rules. */
+html body .token-scope .font-display {
+  background-image: none;
+  color: inherit;
+  text-shadow: none;
+  text-transform: none;
+  letter-spacing: -0.02em;
+}
+html body .token-scope [class*="bg-card"] {
+  background-image: none;
+  border-color: var(--border);
+  border-width: 1px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transform: none;
+}
+html body .token-scope :is(p, span, div, label, h3, h4).uppercase { font-family: inherit; }
+html body .token-scope .bg-primary { box-shadow: none; border: 0; }
+.hero-strip { background-color: color-mix(in srgb, var(--card) 80%, transparent); box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 12px 32px -18px rgba(0,0,0,0.25); }
+.brutalist .hero-strip { border-width: 2px; box-shadow: 5px 5px 0 0 var(--border); }
+.neon .hero-strip { border-color: rgba(0, 229, 255, 0.35); box-shadow: 0 0 30px -10px rgba(0, 229, 255, 0.45); }
+
+/* Body font per universe (display fonts are set in the identity blocks above). */
+.glass, .neon { --u-font-body: var(--font-inter), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif; }
+
+/* Scoped universes (Theme Lab, Parallel Universes): a universe applied to one element.
+   Page-level layers (aurora, scanlines, grain, paper) are disabled inside scopes. */
+.universe-scope {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--u-font-body);
+  position: relative;
+  isolation: isolate;
+}
+.universe-scope::before, .universe-scope::after { content: none !important; }
+.universe-scope.neon {
+  background-image:
+    linear-gradient(rgba(0, 229, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.universe-scope.glass {
+  background-image:
+    radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.18), transparent 55%),
+    radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.18), transparent 55%);
+}
+
+
+/* Desktop-only product: below 1024px show the gate instead of the app. Pure CSS — no flash. */
+.app-shell { display: contents; }
+.mobile-gate { display: none; }
+@media (max-width: 1023.98px) {
+  .app-shell { display: none !important; }
+  .mobile-gate { display: flex; }
+}
